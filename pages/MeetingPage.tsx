@@ -28,10 +28,12 @@ const MeetingPage = () => {
             <Button handleAction={initWebRTC} message='Connect webrtc'/>
             <Button handleAction={stopWebRTC} message='Disconnect webrtc' />
             <div>
+                <p>Local Strream</p>
                 <video ref={localVideoRef} autoPlay playsInline style={{ width: '100%', maxWidth: '400px' }} />
                 {error && <p>Error: {error}</p>}
             </div>
             <div>
+                <p>Remote stream</p>
                 <video ref={remoteVideoRef} autoPlay playsInline style={{ width: '100%', maxWidth: '400px' }} />
                 {error && <p>Error: {error}</p>}
             </div>

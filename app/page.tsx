@@ -1,10 +1,9 @@
-import Button from '@/components/common/Button'
-import MeetingPage from '@/pages/MeetingPage';
+import AuthPage from '@/pages/AuthenPage';
 
 export default function Home() {
   return (
     <main>
-      <MeetingPage /> 
+      <AuthPage />
     </main>
   );
 }
