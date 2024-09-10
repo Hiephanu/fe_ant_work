@@ -1,4 +1,4 @@
-import Header from "@/components/auth/Header";
+import NavAuthBar from "@/components/auth/NavAuthBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -15,11 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
+     <div className="w-full">
+        <NavAuthBar />
         {children}
-      </body>
-    </html>
+     </div>
   );
 }
