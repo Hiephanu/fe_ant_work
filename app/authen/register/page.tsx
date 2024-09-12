@@ -1,7 +1,9 @@
+import RegisterPage from "@/pages/RegisterPage";
+
 export default function Register() {
     return (
         <div>
-            <p>Register develop</p>
+            <RegisterPage />
         </div>
     )
 }

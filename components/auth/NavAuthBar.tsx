@@ -12,7 +12,7 @@ export default function NavAuthBar() {
     };
 
     return (
-        <div className="flex mt-8 w-[60%] mx-auto item-center bg-blue-400 p-3 relative text-white rounded-md">
+        <div className="flex mt-8 w-full item-center bg-blue-400 p-3 relative text-white rounded-md">
             <div 
                 className={`absolute bottom-0 h-1 bg-blue-600 transition-all duration-300 ease-in-out`} 
                 style={{

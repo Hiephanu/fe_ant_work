@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
      <div className="w-full">
-        <NavAuthBar />
+        <div className="w-[50%] mx-auto">
+            <NavAuthBar />
+        </div>
         {children}
      </div>
   );
