@@ -5,9 +5,25 @@ import { IoMdHelpCircleOutline } from "react-icons/io";
 import { HiOutlineMenu } from "react-icons/hi";
 import { formatTime } from "@/utils/date";
 import { useEffect, useState } from "react";
+import Button from "./Button";
+import { useRouter } from "next/navigation";
 export default function Header() {
     const [currentTime, setCurrentTime] = useState<Date>(new Date(Date.now()))
-    console.log("rerender")
+    const [avatar, setAvatar] = useState<string | null>('')
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const storedAvatar = window.localStorage.getItem('avatar')
+            setAvatar(storedAvatar)
+            console.log('avatar', storedAvatar)
+        }
+    }, [])
+    const router = useRouter()
+    console.log('avatar', avatar);
+    
+    const navigateToLogin =()=> {
+        router.push('/authen/login')
+    }
     useEffect(() => {
         const interval = setInterval(() => {
           setCurrentTime(new Date());
@@ -32,8 +48,11 @@ export default function Header() {
                 </div>
                 <div className="flex items-center gap-10">
                     <HiOutlineMenu size={'25px'}/>
-                    <img src="https://inkythuatso.com/uploads/thumbnails/800/2022/05/hinh-anh-meo-bua-buon-cuoi-nhat-12-09-57-09.jpg" alt="" className="h-8 w-8 rounded-full"/>
-                </div>
+                    {avatar ? 
+                    <img src={avatar} alt='Avatar' className="w-4 h-4 rounded-full" />
+                    :<Button message="Login" handleAction={navigateToLogin}/>
+                    }
+                    </div>
             </div>
         </div>
     )

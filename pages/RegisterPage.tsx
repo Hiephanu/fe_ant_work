@@ -10,17 +10,16 @@ export default function RegisterPage() {
   const [username, setUsername] = useState('')
 
   async function handleSubmit() {
-    const response = await fetch('/auth/register', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password, email, name }),
     })
 
     if (response.ok) {
-      // localStorage.setItem('token', response.token)
-      router.push('/')
+      router.push('/authen/login')
     } else {
-      console.log(response)
+      console.log("error :" ,await response.json())
     }
   }
 

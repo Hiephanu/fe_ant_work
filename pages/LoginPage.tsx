@@ -5,38 +5,40 @@ import GoogleButton from '@/components/auth/GoogleButton'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
+  const [username, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleSubmit() {
-    // const response = await fetch('/api/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ email, password }),
-    // })
-
-    // if (response.ok) {
-    //   // localStorage.setItem('token', response.token)
-    //   router.push('/')
-    // } else {
-    //   console.log(response)
-    // }
-    localStorage.setItem("token", "test")
-    router.push('/')
+    console.log(username, password)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username :username, password : password }),
+    })
+    const data = await response.json()
+    if (response.ok) {
+      router.push('/')
+      window.localStorage.setItem('avatar', data.data.Avatar)
+      window.localStorage.setItem('accountId', data.data.accountId)
+      window.localStorage.setItem('name', data.data.name)
+      window.localStorage.setItem('token',data.data.token)
+    } else {
+      console.log("error :" ,data)
+    }
   }
 
   return (
     <div className='w-[60%] mx-auto'>
       <div className='w-[65%] mx-auto'>
         <div className='mt-8'>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Email</label>
           <input 
-            type="email" 
-            name="email" 
+            type="username" 
+            name="username" 
             placeholder="Email" 
             required 
             className='w-full border-black-500 border-2 rounded-lg px-4 py-2 mt-2'
-            value={email}
+            value={username}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
