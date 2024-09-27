@@ -13,6 +13,7 @@ export const useSocket = () => {
     
         socketRef.current.onmessage = (event) => {
           const newMessage = event.data;
+          console.log(event);
           setMessages((prevMessages) => [...prevMessages, newMessage]);
         };
     
@@ -33,7 +34,7 @@ export const useSocket = () => {
 
   const sendEvent = (event: any) => {
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(event);
+      socketRef.current.send(JSON.stringify(event));
     } else {
       console.error('WebSocket is not open. Cannot send message.');
     }
